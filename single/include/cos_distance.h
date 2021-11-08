@@ -19,11 +19,13 @@ typedef struct vectors {
 void CreateBase(base_t* base, size_t numberLines,
                    size_t numberElements);
 void ClearBase(base_t* base);
+void FillVector(vector_t* vector);
 
 float Dot(vector_t* vector1, vector_t* vector2);
 float Length(vector_t* vector);
 float CosDistance(vector_t* vector1, vector_t* vector2);
 
 void ReadBaseFromFile(base_t* base, char* filename);
+const vector_t* MinVectorCosDistance(base_t* base, vector_t* vector);
 
 #endif // INDIVIDUAL_TASK_2_COS_DISTANCE_H

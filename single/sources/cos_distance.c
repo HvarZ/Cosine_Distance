@@ -29,6 +29,25 @@ void ClearBase(base_t* base) {
   }
 }
 
+void FillVector(vector_t* vector) {
+  if (vector == NULL) {
+    return;
+  }
+  if (vector->data != NULL) {
+    free(vector->data);
+  }
+  size_t numberElements;
+  printf("Enter a number of dimension of vector\n");
+  scanf("%lu", &numberElements);
+  vector->data = malloc(numberElements * sizeof(float));
+  vector->size = numberElements;
+
+  for (size_t i = 0; i < numberElements; ++i) {
+    scanf("%f", &vector->data[i]);
+  }
+
+}
+
 float Dot(vector_t* vector1, vector_t* vector2) {
   if (vector1->data == NULL || vector2->data == NULL) {
     return -FLT_MAX;
@@ -59,7 +78,7 @@ float Length(vector_t* vector) {
 }
 
 float CosDistance(vector_t* vector1, vector_t* vector2) {
-  return Dot(vector1, vector2) / (Length(vector1) * Length(vector2));
+  return acosf(Dot(vector1, vector2) / (Length(vector1) * Length(vector2)));
 }
 
 void ReadBaseFromFile(base_t* base, char* filename) {
@@ -82,4 +101,28 @@ void ReadBaseFromFile(base_t* base, char* filename) {
     }
   }
   fclose(in);
+}
+
+const vector_t* MinVectorCosDistance(base_t *base, vector_t *vector) {
+  if (base == NULL || vector == NULL) {
+    return NULL;
+  }
+  if (base->size == 0) {
+    return NULL;
+  }
+  if (base->data[0].size != vector->size) {
+    return NULL;
+  }
+
+  float min = 180;
+  const vector_t* result = &base->data[base->size - 1];
+
+  for (size_t i = 0; i < base->size; ++i) {
+    float distance = CosDistance(vector, &base->data[i]);
+    if (distance < min) {
+      min = distance;
+      result = &base->data[i];
+    }
+  }
+  return result;
 }
