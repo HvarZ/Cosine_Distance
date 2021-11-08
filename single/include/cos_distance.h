@@ -1,5 +1,5 @@
-#ifndef UNDIVIDUAL_TASK_2_COS_DISTANCE_H
-#define UNDIVIDUAL_TASK_2_COS_DISTANCE_H
+#ifndef INDIVIDUAL_TASK_2_COS_DISTANCE_H
+#define INDIVIDUAL_TASK_2_COS_DISTANCE_H
 
 #include <stdlib.h>
 #include <float.h>
@@ -14,4 +14,4 @@ float Dot(vector_t* vector1, vector_t* vector2);
 float Length(vector_t* vector);
 float CosDistance(vector_t* vector1, vector_t* vector2);
 
-#endif // UNDIVIDUAL_TASK_2_COS_DISTANCE_H
+#endif // INDIVIDUAL_TASK_2_COS_DISTANCE_H
