@@ -26,5 +26,6 @@ float Length(vector_t* vector);
 float CosDistance(vector_t* vector1, vector_t* vector2);
 
 void ReadBaseFromFile(base_t* base, char* filename);
+const vector_t* MinVectorCosDistance(base_t *base, vector_t *vector);
 
 #endif // UNDIVIDUAL_TASK_2_NEUTRAL_FUNCTIONS_H

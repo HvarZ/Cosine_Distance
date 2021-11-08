@@ -1,4 +1,4 @@
-#include "cos_distance.h"
+#include "neutral_functions.h"
 #include "file_generator.h"
 
 int main() {

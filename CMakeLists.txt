@@ -9,7 +9,6 @@ set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage -Werror -Wpedan
 set(CMAKE_C_FLAGS "-g -O0 -Wall -W -fprofile-arcs -ftest-coverage -Werror -Wpedantic")
 set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
 
-
 add_library(file_generator STATIC
         ${CMAKE_CURRENT_SOURCE_DIR}/file_generator/sources/file_generator.c)
 target_include_directories(file_generator PUBLIC
@@ -20,14 +19,12 @@ add_library(neutral_functions STATIC
 target_include_directories(neutral_functions PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/neutral_functions/include)
 
-add_library(distance STATIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/single/single.c)
-target_include_directories(distance PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/neutral_functions/include)
+add_library(_static SHARED single/single.c)
+target_include_directories(_static PUBLIC ${PROJECT_SOURCE_DIR}/neutral_functions)
+target_link_libraries(_static neutral_functions)
 
-add_executable(main
-        main.c)
+add_executable(main main.c)
 target_include_directories(main PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/single/include
         ${CMAKE_CURRENT_SOURCE_DIR}/file_generator)
-target_link_libraries(main distance file_generator neutral_functions)
+target_link_libraries(main file_generator _static)
