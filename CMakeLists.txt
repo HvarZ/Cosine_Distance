@@ -14,8 +14,14 @@ add_library(distance STATIC
 target_include_directories(distance PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/single/include)
 
+add_library(file_generator STATIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/file_generator/sources/file_generator.c)
+target_include_directories(file_generator PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/file_generator/include)
+
 add_executable(main
         main.c)
 target_include_directories(main PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/single/include)
-target_link_libraries(main distance)
+        ${CMAKE_CURRENT_SOURCE_DIR}/single/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/file_generator)
+target_link_libraries(main distance file_generator)
