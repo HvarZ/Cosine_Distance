@@ -1,7 +1,7 @@
-#include "cos_distance.h"
+#include "neutral_functions.h"
 
 void CreateBase(base_t* base, size_t numberLines,
-                   size_t numberElements) {
+                size_t numberElements) {
   if (base == NULL) {
     return;
   }
