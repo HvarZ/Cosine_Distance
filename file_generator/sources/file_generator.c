@@ -30,6 +30,8 @@ void FillVectorsFile(char *filename, size_t numberLines,
   }
 
   FILE* out = fopen(filename, "w");
+  fprintf(out, "%lu ", numberLines);
+  fprintf(out, "%lu\n", numberElements);
   for (size_t i = 0; i < numberLines; ++i) {
     FillVectorFile(out, numberElements);
   }
@@ -62,6 +64,8 @@ void RandomFillVectorsFile(char *filename, size_t numberLines,
     return;
   }
   FILE* out = fopen(filename, "w");
+  fprintf(out, "%lu ", numberLines);
+  fprintf(out, "%lu\n", numberElements);
   for (size_t i = 0; i < numberLines; ++i) {
     srand(time(NULL) + i);
     RandomFillVectorFile(out, numberElements);
