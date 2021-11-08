@@ -1,5 +1,6 @@
 #include "file_generator.h"
 
+
 void FillVectorFile(FILE* out, size_t numberElements) {
   if (out == NULL) {
     return;
@@ -18,7 +19,7 @@ void FillVectorFile(FILE* out, size_t numberElements) {
 
 }
 
-void FillVectorsFile(char *filename, size_t numberLines,
+void FillBaseFile(char *filename, size_t numberLines,
                      size_t numberElements) {
   if (filename == NULL) {
     printf("file not found");
@@ -48,12 +49,12 @@ void RandomFillVectorFile(FILE *out, size_t numberElements) {
   }
 
   for (size_t i = 0; i < numberElements; ++i) {
-    fprintf(out, "%f ", (float)(rand() % 2000) - 1000);
+    fprintf(out, "%f ", (float)(rand() % LENGTH_SEGMENT) - HALF_LENGTH_SEGMENT);
   }
   fprintf(out, "\n");
 }
 
-void RandomFillVectorsFile(char *filename, size_t numberLines,
+void RandomFillBaseFile(char *filename, size_t numberLines,
                            size_t numberElements) {
   if (filename == NULL) {
     printf("file not found");
