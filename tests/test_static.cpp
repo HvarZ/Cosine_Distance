@@ -75,7 +75,8 @@ TEST(_static, CosDistance) {
   vector1.data = (float*)malloc(1 * sizeof(float));
   vector2.size = 1;
   vector2.data = (float*)malloc(1 * sizeof(float));
-  vector1.data[0] = vector1.data[1] = vector2.data[0] = vector2.data[1] = 1;
+  vector1.data[0] = 1;
+  vector2.data[0] = 1;
   ASSERT_EQ(CosDistance(&vector1, &vector2), 0);
   ClearVector(&vector1);
   ClearVector(&vector2);
