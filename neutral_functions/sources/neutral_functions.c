@@ -48,6 +48,13 @@ void FillVector(vector_t* vector) {
 
 }
 
+void ClearVector(vector_t* vector) {
+  if (vector == NULL) {
+    return;
+  }
+  free(vector->data);
+}
+
 float Dot(vector_t* vector1, vector_t* vector2) {
   if (vector1->data == NULL || vector2->data == NULL) {
     return -FLT_MAX;
