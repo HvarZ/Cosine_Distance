@@ -44,7 +44,7 @@ void FillVector(vector_t *vector) {
   }
   size_t numberElements;
   printf("Enter a number of dimension of vector\n");
-  scanf("%lu", &numberElements);
+  scanf("%zu", &numberElements);
   vector->data = (float *)malloc(numberElements * sizeof(float));
   if (vector->data == NULL) {
     return;
@@ -136,7 +136,7 @@ void ReadBaseFromFile(base_t *base, char *filename) {
 
   FILE *in = fopen(filename, "r");
   size_t numberLines, numberElements;
-  fscanf(in, "%lu %lu", &numberLines, &numberElements);
+  fscanf(in, "%zu %zu", &numberLines, &numberElements);
 
   ClearBase(base);
 

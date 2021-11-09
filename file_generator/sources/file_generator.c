@@ -4,7 +4,7 @@ void FillVectorFile(FILE* out, size_t numberElements) {
   if (out == NULL) {
     return;
   }
-  if (numberElements <= 0) {
+  if (numberElements == 0) {
     printf("elements is 0");
     return;
   }
@@ -28,8 +28,8 @@ void FillBaseFile(char* filename, size_t numberLines, size_t numberElements) {
   }
 
   FILE* out = fopen(filename, "w");
-  fprintf(out, "%lu ", numberLines);
-  fprintf(out, "%lu\n", numberElements);
+  fprintf(out, "%zu", numberLines);
+  fprintf(out, "%zu\n", numberElements);
   for (size_t i = 0; i < numberLines; ++i) {
     FillVectorFile(out, numberElements);
   }
@@ -40,7 +40,7 @@ void RandomFillVectorFile(FILE* out, size_t numberElements) {
   if (out == NULL) {
     return;
   }
-  if (numberElements <= 0) {
+  if (numberElements == 0) {
     printf("elements is 0");
     return;
   }
@@ -62,8 +62,8 @@ void RandomFillBaseFile(char* filename, size_t numberLines,
     return;
   }
   FILE* out = fopen(filename, "w");
-  fprintf(out, "%lu ", numberLines);
-  fprintf(out, "%lu\n", numberElements);
+  fprintf(out, "%zu ", numberLines);
+  fprintf(out, "%zu\n", numberElements);
   for (size_t i = 0; i < numberLines; ++i) {
     srand(time(NULL) + i);
     RandomFillVectorFile(out, numberElements);
