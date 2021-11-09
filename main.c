@@ -40,6 +40,9 @@ int main(int argc, char *argv[]) {
 
   vector.size = MAX_VECTOR_SIZE;
   vector.data = (float*)malloc(MAX_VECTOR_SIZE * sizeof(float));
+  if (vector.data == NULL) {
+    exit(-1);
+  }
   vector.data[0] = vector.data[1] = vector.data[2] = 0;
 
   base_t base;

@@ -4,11 +4,17 @@ void CreateBase(base_t *base, size_t numberLines, size_t numberElements) {
   if (base == NULL) {
     return;
   }
-  base->data = malloc(numberLines * sizeof(vector_t));
+  base->data = (vector_t *)malloc(numberLines * sizeof(vector_t));
+  if (base->data == NULL) {
+    return;
+  }
   base->size = numberLines;
 
   for (size_t i = 0; i < numberLines; ++i) {
-    base->data[i].data = malloc(numberElements * sizeof(float));
+    base->data[i].data = (float *)malloc(numberElements * sizeof(float));
+    if (base->data[i].data == NULL) {
+      return;
+    }
     base->data[i].size = numberElements;
   }
 }
@@ -39,7 +45,10 @@ void FillVector(vector_t *vector) {
   size_t numberElements;
   printf("Enter a number of dimension of vector\n");
   scanf("%lu", &numberElements);
-  vector->data = malloc(numberElements * sizeof(float));
+  vector->data = (float *)malloc(numberElements * sizeof(float));
+  if (vector->data == NULL) {
+    return;
+  }
   vector->size = numberElements;
 
   for (size_t i = 0; i < numberElements; ++i) {
@@ -53,6 +62,9 @@ void RandomFillVector(vector_t *vector, size_t size) {
   }
 
   vector->data = (float *)malloc(size * sizeof(float));
+  if (vector->data == NULL) {
+    return;
+  }
   vector->size = size;
   srand(time(NULL));
   for (size_t i = 0; i < size; ++i) {

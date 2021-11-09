@@ -48,6 +48,10 @@ const vector_t *MinVectorCosDistance(base_t *base, vector_t *vector) {
   thread_info_t *threadsInfo =
       (thread_info_t *)malloc(threads_count * sizeof(thread_info_t));
 
+  if (threadsInfo == NULL) {
+    return NULL;
+  }
+
   for (size_t i = 0; i < threads_count; ++i) {
     threadsInfo[i].base = base;
     threadsInfo[i].indexFirst = i * (base->size / threads_count);
