@@ -25,7 +25,7 @@ add_library(_static STATIC single/single.c)
 target_include_directories(_static PUBLIC ${PROJECT_SOURCE_DIR}/neutral_functions)
 target_link_libraries(_static neutral_functions)
 
-add_library(_dynamic SHARED parallel/parallel.c)
+add_library(_dynamic STATIC parallel/parallel.c)
 target_include_directories(_dynamic PUBLIC
         ${PROJECT_SOURCE_DIR}/neutral_functions)
 target_link_libraries(_dynamic neutral_functions m)
