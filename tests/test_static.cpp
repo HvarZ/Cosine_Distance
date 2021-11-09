@@ -21,17 +21,10 @@ TEST(_static, ClearTest) {
   ASSERT_EQ(base.size, 0);
 }
 
-TEST(_static, RandomFillVector) {
-  vector_t vector;
-  RandomFillVector(&vector, 10);
-
-  ASSERT_EQ(vector.size, 10);
-  ClearVector(&vector);
-}
-
 TEST(_static, ClearVector) {
   vector_t vector;
-  RandomFillVector(&vector, 10);
+  vector.size = 3;
+  vector.data = (float *)malloc(3 * sizeof(float));
 
   ClearVector(&vector);
   ASSERT_EQ(vector.size, 0);

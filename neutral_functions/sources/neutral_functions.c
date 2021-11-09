@@ -35,42 +35,6 @@ void ClearBase(base_t *base) {
   base->size = 0;
 }
 
-void FillVector(vector_t *vector) {
-  if (vector == NULL) {
-    return;
-  }
-  if (vector->size != 0) {
-    free(vector->data);
-  }
-  size_t numberElements;
-  printf("Enter a number of dimension of vector\n");
-  scanf("%zu", &numberElements);
-  vector->data = (float *)malloc(numberElements * sizeof(float));
-  if (vector->data == NULL) {
-    return;
-  }
-  vector->size = numberElements;
-
-  for (size_t i = 0; i < numberElements; ++i) {
-    scanf("%f", &vector->data[i]);
-  }
-}
-
-void RandomFillVector(vector_t *vector, size_t size) {
-  if (vector == NULL) {
-    return;
-  }
-
-  vector->data = (float *)malloc(size * sizeof(float));
-  if (vector->data == NULL) {
-    return;
-  }
-  vector->size = size;
-  srand(time(NULL));
-  for (size_t i = 0; i < size; ++i) {
-    vector->data[i] = (float)(rand() % LENGTH_SEGMENT) - HALF_LENGTH_SEGMENT;
-  }
-}
 
 void ClearVector(vector_t *vector) {
   if (vector == NULL) {
