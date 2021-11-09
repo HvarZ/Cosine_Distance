@@ -75,7 +75,7 @@ const vector_t *MinVectorCosDistance(base_t *base, vector_t *vector) {
   }
 
   float min = MAX_ACOS;
-  const vector_t *result = (vector_t *)&resultVectors[threads_count - 1];
+  const vector_t *result = resultVectors[threads_count - 1];
 
   for (size_t i = 0; i < threads_count; ++i) {
     float distance = CosDistance(vector, resultVectors[i]);
