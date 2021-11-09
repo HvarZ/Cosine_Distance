@@ -35,7 +35,6 @@ void ClearBase(base_t *base) {
   base->size = 0;
 }
 
-
 void ClearVector(vector_t *vector) {
   if (vector == NULL) {
     return;
