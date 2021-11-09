@@ -27,6 +27,7 @@ void ClearBase(base_t* base) {
     }
     free(base->data);
   }
+  base->size = 0;
 }
 
 void FillVector(vector_t* vector) {
@@ -53,7 +54,6 @@ void RandomFillVector(vector_t* vector, size_t size) {
     return;
   }
 
-  ClearVector(vector);
 
   vector->data = (float*)malloc(size * sizeof(float));
   vector->size = size;
@@ -71,13 +71,20 @@ void ClearVector(vector_t* vector) {
     return;
   }
   free(vector->data);
+  vector->size = 0;
 }
 
 float Dot(vector_t* vector1, vector_t* vector2) {
+  if (vector1 == NULL || vector2 == NULL) {
+    return -FLT_MAX;
+  }
   if (vector1->data == NULL || vector2->data == NULL) {
     return -FLT_MAX;
   }
   if (vector1->size != vector2->size) {
+    return -FLT_MAX;
+  }
+  if (vector1->size == 0 || vector2->size == 0) {
     return -FLT_MAX;
   }
   float result = 0;
@@ -90,7 +97,10 @@ float Dot(vector_t* vector1, vector_t* vector2) {
 }
 
 float Length(vector_t* vector) {
-  if (vector->data == NULL) {
+  if (vector == NULL) {
+    return -FLT_MAX;
+  }
+  if (vector->data == NULL || vector->size == 0) {
     return -FLT_MAX;
   }
   float result = 0;
@@ -103,6 +113,18 @@ float Length(vector_t* vector) {
 }
 
 float CosDistance(vector_t* vector1, vector_t* vector2) {
+  if (vector1 == NULL || vector2 == NULL) {
+    return -FLT_MAX;
+  }
+  if (vector1->data == NULL || vector2->data == NULL) {
+    return -FLT_MAX;
+  }
+  if (vector1->size != vector2->size) {
+    return -FLT_MAX;
+  }
+  if (vector1->size == 0 || vector2->size == 0) {
+    return -FLT_MAX;
+  }
   return acosf(Dot(vector1, vector2) / (Length(vector1) * Length(vector2)));
 }
 
@@ -128,10 +150,3 @@ void ReadBaseFromFile(base_t* base, char* filename) {
   fclose(in);
 }
 
-void OutputVector(char* filename, vector_t* vector) {
-  FILE* out = fopen(filename, "w");
-  for (size_t i = 0; i < vector->size; ++i) {
-    printf("%f", vector->data[i]);
-  }
-  fclose(out);
-}
