@@ -42,7 +42,7 @@ jobs:
           valgrind --leak-check=full --error-exitcode=1 ./main -i ../results/input.txt -o ../results/output.txt
       - name: check valgrind main parallel
         run: |
-          cd build_p
+          cd _builds
           cmake .. -DIS_STATIC=OFF
           make
           ./main -i ../results/input.txt -o ../results/output.txt
