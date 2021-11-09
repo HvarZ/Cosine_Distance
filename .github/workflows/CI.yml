@@ -28,12 +28,6 @@ jobs:
         run: |
           cd _builds
           ./tests_dynamic
-      - name: cppcheck
-        run: |
-          cppcheck --enable=all --suppress=missingInclude --error-exitcode=1
-          --inconclusive --language=c main.c file_generator/include/ file_generator/sources
-          neutral_functions/include neutral_functions/soucres
-          parallel/ single/
       - name: check valgrind single
         run: |
           cd _builds
