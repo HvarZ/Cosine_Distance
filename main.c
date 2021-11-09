@@ -28,7 +28,6 @@ int main(int argc, char *argv[]) {
     case 'g':
       if (input != NULL) {
         RandomFillBaseFile(input, MAX_BASE_SIZE, MAX_VECTOR_SIZE);
-        RandomFillVector(&vector, MAX_VECTOR_SIZE);
       }
       break;
     case 'h':
@@ -38,6 +37,10 @@ int main(int argc, char *argv[]) {
       break;
     }
   }
+
+  vector.size = MAX_VECTOR_SIZE;
+  vector.data = (float*)malloc(MAX_VECTOR_SIZE * sizeof(float));
+  vector.data[0] = vector.data[1] = vector.data[2] = 0;
 
   base_t base;
   CreateBase(&base, MAX_BASE_SIZE, MAX_VECTOR_SIZE);
