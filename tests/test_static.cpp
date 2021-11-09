@@ -57,7 +57,7 @@ TEST(_static, Dot) {
 TEST(_static, Length) {
   vector_t vector1;
   vector1.size = 0;
-  ASSERT_EQ(Length(&vector1), -FLT_MAX);
+  ASSERT_EQ(Length(&vector1), 0);
   vector1.data = (float*)malloc(1 * sizeof(float));
   vector1.size = 1;
   vector1.data[0] = 4;

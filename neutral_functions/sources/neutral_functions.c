@@ -78,9 +78,6 @@ float Dot(vector_t* vector1, vector_t* vector2) {
   if (vector1 == NULL || vector2 == NULL) {
     return -FLT_MAX;
   }
-  if (vector1->data == NULL || vector2->data == NULL) {
-    return -FLT_MAX;
-  }
   if (vector1->size != vector2->size) {
     return -FLT_MAX;
   }
@@ -100,9 +97,6 @@ float Length(vector_t* vector) {
   if (vector == NULL) {
     return -FLT_MAX;
   }
-  if (vector->data == NULL || vector->size == 0) {
-    return -FLT_MAX;
-  }
   float result = 0;
 
   for(size_t i = 0; i < vector->size; ++i) {
@@ -114,9 +108,6 @@ float Length(vector_t* vector) {
 
 float CosDistance(vector_t* vector1, vector_t* vector2) {
   if (vector1 == NULL || vector2 == NULL) {
-    return -FLT_MAX;
-  }
-  if (vector1->data == NULL || vector2->data == NULL) {
     return -FLT_MAX;
   }
   if (vector1->size != vector2->size) {
