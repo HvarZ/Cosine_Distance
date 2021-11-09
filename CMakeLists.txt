@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(undividual_task_2 C)
+project(undividual_task_2)
 
 set(CMAKE_C_STANDARD 11)
 
@@ -40,3 +40,22 @@ if(IS_STATIC)
 else()
     target_link_libraries(main file_generator _dynamic)
 endif()
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/third_party/googletest)
+enable_testing()
+
+add_executable(tests_static tests/test_static.cpp)
+
+target_include_directories(tests_static PUBLIC
+        ${PROJECT_SOURCE_DIR}/neutral_functions)
+
+target_link_libraries(tests_static gtest_main _static)
+
+add_executable(tests_dynamic tests/test_dynamic.cpp)
+
+
+target_include_directories(tests_dynamic PUBLIC
+        ${PROJECT_SOURCE_DIR}/neutral_functions)
+
+target_link_libraries(tests_dynamic gtest_main _dynamic)
+
