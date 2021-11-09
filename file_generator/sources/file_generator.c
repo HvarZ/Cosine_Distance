@@ -1,6 +1,5 @@
 #include "file_generator.h"
 
-
 void FillVectorFile(FILE* out, size_t numberElements) {
   if (out == NULL) {
     return;
