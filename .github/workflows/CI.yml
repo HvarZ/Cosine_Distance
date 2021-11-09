@@ -53,10 +53,7 @@ jobs:
           ./tests_dynamic
           cd ..
           mkdir coverage_report
-          gcovr -r . --exclude _builds/ --exclude build_c/ --exclude build_p/
-          --exclude main.c --exclude file_generator/ --exclude results/
-          --exclude third_party/ --html --html-details -o
-          coverage_report/coverage.html
+          gcovr -r . --exclude _builds/ --exclude build_c/ --exclude build_p/ --exclude main.c --exclude file_generator/ --exclude results/ --exclude third_party/ --html --html-details -ocoverage_report/coverage.html
       - name: Code coverage report html
         uses: actions/upload-artifact@v2
         with:
@@ -65,8 +62,8 @@ jobs:
       - name: clang-format style check
         uses: DoozyX/clang-format-lint-action@v0.12
         with:
-          source: './common_functions ./consistent_implementation ./parallel_implementation ./test'
-          exclude: './_builds ./build_c ./build_p'
+          source: './file_generator ./neutral_functions ./parallel ./single ./tests'
+          exclude: './_builds ./build_c ./build_p ./third_party'
           extensions: 'h,cpp,c'
           clangFormatVersion: 12
           style: google

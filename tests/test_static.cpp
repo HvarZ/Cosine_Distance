@@ -45,9 +45,9 @@ TEST(_static, Dot) {
   vector2.size = 0;
   ASSERT_EQ(-FLT_MAX, Dot(&vector1, &vector2));
   vector1.size = 2;
-  vector1.data = (float*)malloc(2 * sizeof(float));
+  vector1.data = (float *)malloc(2 * sizeof(float));
   vector2.size = 2;
-  vector2.data = (float*)malloc(2 * sizeof(float));
+  vector2.data = (float *)malloc(2 * sizeof(float));
   vector1.data[0] = vector1.data[1] = vector2.data[0] = vector2.data[1] = 0;
   ASSERT_EQ(Dot(&vector1, &vector2), 0);
   ClearVector(&vector1);
@@ -58,7 +58,7 @@ TEST(_static, Length) {
   vector_t vector1;
   vector1.size = 0;
   ASSERT_EQ(Length(&vector1), 0);
-  vector1.data = (float*)malloc(1 * sizeof(float));
+  vector1.data = (float *)malloc(1 * sizeof(float));
   vector1.size = 1;
   vector1.data[0] = 4;
   ASSERT_EQ(Length(&vector1), 4);
@@ -72,9 +72,9 @@ TEST(_static, CosDistance) {
   vector2.size = 0;
   ASSERT_EQ(-FLT_MAX, CosDistance(&vector1, &vector2));
   vector1.size = 1;
-  vector1.data = (float*)malloc(1 * sizeof(float));
+  vector1.data = (float *)malloc(1 * sizeof(float));
   vector2.size = 1;
-  vector2.data = (float*)malloc(1 * sizeof(float));
+  vector2.data = (float *)malloc(1 * sizeof(float));
   vector1.data[0] = 1;
   vector2.data[0] = 1;
   ASSERT_EQ(CosDistance(&vector1, &vector2), 0);
@@ -85,23 +85,22 @@ TEST(_static, CosDistance) {
 TEST(_static, ReadBaseFromFile) {
   base_t base;
   CreateBase(&base, 1000000, 3);
-  ReadBaseFromFile(&base, (char*)"../results/result.txt");
+  ReadBaseFromFile(&base, (char *)"../results/result.txt");
   ASSERT_EQ(base.data[0].data[0], -961);
   ClearBase(&base);
 }
 
-
 TEST(_static, StressTest) {
   vector_t vector;
   vector.size = 3;
-  vector.data = (float*)malloc(3 * sizeof(float));
+  vector.data = (float *)malloc(3 * sizeof(float));
   vector.data[0] = vector.data[1] = vector.data[2] = 0;
 
   base_t base;
   CreateBase(&base, 1000000, 3);
-  ReadBaseFromFile(&base, (char*)"../results/input.txt");
+  ReadBaseFromFile(&base, (char *)"../results/input.txt");
 
-  const vector_t* result = MinVectorCosDistance(&base, &vector);
+  const vector_t *result = MinVectorCosDistance(&base, &vector);
 
   ASSERT_EQ(result->data[0], -137);
   ASSERT_EQ(result->data[1], -650);

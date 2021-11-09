@@ -1,7 +1,6 @@
 #include "neutral_functions.h"
 
-void CreateBase(base_t* base, size_t numberLines,
-                size_t numberElements) {
+void CreateBase(base_t *base, size_t numberLines, size_t numberElements) {
   if (base == NULL) {
     return;
   }
@@ -14,7 +13,7 @@ void CreateBase(base_t* base, size_t numberLines,
   }
 }
 
-void ClearBase(base_t* base) {
+void ClearBase(base_t *base) {
   if (base == NULL || base->data == NULL) {
     return;
   }
@@ -30,7 +29,7 @@ void ClearBase(base_t* base) {
   base->size = 0;
 }
 
-void FillVector(vector_t* vector) {
+void FillVector(vector_t *vector) {
   if (vector == NULL) {
     return;
   }
@@ -46,16 +45,14 @@ void FillVector(vector_t* vector) {
   for (size_t i = 0; i < numberElements; ++i) {
     scanf("%f", &vector->data[i]);
   }
-
 }
 
-void RandomFillVector(vector_t* vector, size_t size) {
+void RandomFillVector(vector_t *vector, size_t size) {
   if (vector == NULL) {
     return;
   }
 
-
-  vector->data = (float*)malloc(size * sizeof(float));
+  vector->data = (float *)malloc(size * sizeof(float));
   vector->size = size;
   srand(time(NULL));
   for (size_t i = 0; i < size; ++i) {
@@ -63,7 +60,7 @@ void RandomFillVector(vector_t* vector, size_t size) {
   }
 }
 
-void ClearVector(vector_t* vector) {
+void ClearVector(vector_t *vector) {
   if (vector == NULL) {
     return;
   }
@@ -74,7 +71,7 @@ void ClearVector(vector_t* vector) {
   vector->size = 0;
 }
 
-float Dot(vector_t* vector1, vector_t* vector2) {
+float Dot(vector_t *vector1, vector_t *vector2) {
   if (vector1 == NULL || vector2 == NULL) {
     return -FLT_MAX;
   }
@@ -86,27 +83,27 @@ float Dot(vector_t* vector1, vector_t* vector2) {
   }
   float result = 0;
 
-  for(size_t i = 0; i < vector1->size; ++i) {
+  for (size_t i = 0; i < vector1->size; ++i) {
     result += (vector1->data[i] * vector2->data[i]);
   }
 
   return result;
 }
 
-float Length(vector_t* vector) {
+float Length(vector_t *vector) {
   if (vector == NULL) {
     return -FLT_MAX;
   }
   float result = 0;
 
-  for(size_t i = 0; i < vector->size; ++i) {
+  for (size_t i = 0; i < vector->size; ++i) {
     result += powf(vector->data[i], 2);
   }
 
   return sqrtf(result);
 }
 
-float CosDistance(vector_t* vector1, vector_t* vector2) {
+float CosDistance(vector_t *vector1, vector_t *vector2) {
   if (vector1 == NULL || vector2 == NULL) {
     return -FLT_MAX;
   }
@@ -119,13 +116,13 @@ float CosDistance(vector_t* vector1, vector_t* vector2) {
   return acosf(Dot(vector1, vector2) / (Length(vector1) * Length(vector2)));
 }
 
-void ReadBaseFromFile(base_t* base, char* filename) {
+void ReadBaseFromFile(base_t *base, char *filename) {
   if (filename == NULL) {
     printf("file not found");
     return;
   }
 
-  FILE* in = fopen(filename, "r");
+  FILE *in = fopen(filename, "r");
   size_t numberLines, numberElements;
   fscanf(in, "%lu %lu", &numberLines, &numberElements);
 
@@ -140,4 +137,3 @@ void ReadBaseFromFile(base_t* base, char* filename) {
   }
   fclose(in);
 }
-
