@@ -19,7 +19,7 @@ jobs:
           mkdir _builds
           cd _builds
           cmake ..
-          make all
+          make
       - name: test single
         run: |
           cd _builds
