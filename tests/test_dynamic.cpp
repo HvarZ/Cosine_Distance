@@ -87,6 +87,7 @@ TEST(dynamic, ReadBaseFromFile) {
   CreateBase(&base, 1000000, 3);
   ReadBaseFromFile(&base, (char*)"../results/result.txt");
   ASSERT_EQ(base.data[0].data[0], -961);
+  ClearBase(&base);
 }
 
 
