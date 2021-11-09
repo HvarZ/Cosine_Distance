@@ -33,7 +33,7 @@ void FillVector(vector_t* vector) {
   if (vector == NULL) {
     return;
   }
-  if (vector->data != NULL) {
+  if (vector->size != 0) {
     free(vector->data);
   }
   size_t numberElements;
@@ -48,8 +48,26 @@ void FillVector(vector_t* vector) {
 
 }
 
+void RandomFillVector(vector_t* vector, size_t size) {
+  if (vector == NULL) {
+    return;
+  }
+
+  ClearVector(vector);
+
+  vector->data = (float*)malloc(size * sizeof(float));
+  vector->size = size;
+  srand(time(NULL));
+  for (size_t i = 0; i < size; ++i) {
+    vector->data[i] = (float)(rand() % LENGTH_SEGMENT) - HALF_LENGTH_SEGMENT;
+  }
+}
+
 void ClearVector(vector_t* vector) {
   if (vector == NULL) {
+    return;
+  }
+  if (vector->size == 0) {
     return;
   }
   free(vector->data);
@@ -108,4 +126,12 @@ void ReadBaseFromFile(base_t* base, char* filename) {
     }
   }
   fclose(in);
+}
+
+void OutputVector(char* filename, vector_t* vector) {
+  FILE* out = fopen(filename, "w");
+  for (size_t i = 0; i < vector->size; ++i) {
+    printf("%f", vector->data[i]);
+  }
+  fclose(out);
 }
