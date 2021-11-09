@@ -15,4 +15,4 @@ void RandomFillVectorFile(FILE *out, size_t numberElements);
 void RandomFillBaseFile(char *filename, size_t numberLines,
                         size_t numberElements);
 
-#endif // INDIVIDUAL_TASK_2_FILE_GENERATOR_H
+#endif  // INDIVIDUAL_TASK_2_FILE_GENERATOR_H

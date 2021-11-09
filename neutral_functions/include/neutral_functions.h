@@ -37,4 +37,4 @@ const vector_t *MinVectorCosDistance(base_t *base, vector_t *vector);
 
 void OutputVector(char *filename, vector_t *vector);
 
-#endif // INDIVIDUAL_TASK_2_NEUTRAL_FUNCTIONS_H
+#endif  // INDIVIDUAL_TASK_2_NEUTRAL_FUNCTIONS_H

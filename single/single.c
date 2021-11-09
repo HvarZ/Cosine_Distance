@@ -1,6 +1,6 @@
 #include "neutral_functions.h"
 
-const vector_t* MinVectorCosDistance(base_t *base, vector_t *vector) {
+const vector_t* MinVectorCosDistance(base_t* base, vector_t* vector) {
   if (base == NULL || vector == NULL) {
     return NULL;
   }

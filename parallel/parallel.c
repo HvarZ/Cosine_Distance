@@ -1,7 +1,7 @@
-#include "neutral_functions.h"
-
 #include <pthread.h>
 #include <unistd.h>
+
+#include "neutral_functions.h"
 
 typedef struct thread_info {
   base_t *base;
@@ -43,7 +43,7 @@ const vector_t *MinVectorCosDistance(base_t *base, vector_t *vector) {
     return NULL;
   }
 
-  const size_t threads_count = sysconf(_SC_NPROCESSORS_ONLN); // 4
+  const size_t threads_count = sysconf(_SC_NPROCESSORS_ONLN);
   pthread_t threads[threads_count];
   thread_info_t *threadsInfo =
       (thread_info_t *)malloc(threads_count * sizeof(thread_info_t));

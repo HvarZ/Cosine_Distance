@@ -38,7 +38,6 @@ TEST(_static, ClearVector) {
 }
 
 TEST(_static, Dot) {
-
   vector_t vector1;
   vector1.size = 0;
   vector_t vector2;

@@ -16,11 +16,9 @@ void FillVectorFile(FILE* out, size_t numberElements) {
     fprintf(out, "%f ", buffer);
   }
   fprintf(out, "\n");
-
 }
 
-void FillBaseFile(char *filename, size_t numberLines,
-                     size_t numberElements) {
+void FillBaseFile(char* filename, size_t numberLines, size_t numberElements) {
   if (filename == NULL) {
     printf("file not found");
     return;
@@ -39,7 +37,7 @@ void FillBaseFile(char *filename, size_t numberLines,
   fclose(out);
 }
 
-void RandomFillVectorFile(FILE *out, size_t numberElements) {
+void RandomFillVectorFile(FILE* out, size_t numberElements) {
   if (out == NULL) {
     return;
   }
@@ -54,8 +52,8 @@ void RandomFillVectorFile(FILE *out, size_t numberElements) {
   fprintf(out, "\n");
 }
 
-void RandomFillBaseFile(char *filename, size_t numberLines,
-                           size_t numberElements) {
+void RandomFillBaseFile(char* filename, size_t numberLines,
+                        size_t numberElements) {
   if (filename == NULL) {
     printf("file not found");
     return;
