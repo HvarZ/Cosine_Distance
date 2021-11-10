@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: install dependencies
+        run: |
+          sudo apt install
+          sudo apt install lcov cppcheck valgrind gcovr
+          git submodule update --init
+      - name: build
+        run: |
+          mkdir _builds
+          cd _builds
+          cmake ..
+          make
+      - name: test single
+        run: |
+          cd _builds
+          ./tests_static
+      - name: test parallel
+        run: |
+          cd _builds
+          ./tests_dynamic
+      - name: cppcheck
+        run: |
+          cppcheck --enable=all --suppress=missingInclude --error-exitcode=1 --inconclusive --language=c main.c file_generator/ neutral_functions/ parallel/ single/
+      - name: check valgrind single
+        run: |
+          cd _builds
+          valgrind --leak-check=full --error-exitcode=1 ./tests_static
+      - name: check valgrind parallel
+        run: |
+          cd _builds
+          valgrind --leak-check=full --error-exitcode=1 ./tests_dynamic
+      - name: check valgrind main single
+        run: |
+          cd _builds
+          valgrind --leak-check=full --error-exitcode=1 ./main -i ../results/input.txt -o ../results/output.txt
+      - name: check valgrind main parallel
+        run: |
+          cd _builds
+          cmake .. -DIS_STATIC=OFF
+          make
+          ./main -i ../results/input.txt -o ../results/output.txt
+      - name: Create coverage
+        run: |
+          cd _builds
+          ./tests_static
+          ./tests_dynamic
+          cd ..
+          mkdir coverage_report
+          gcovr -r . --exclude _builds/ --exclude build_c/ --exclude build_p/ --exclude main.c --exclude file_generator/ --exclude results/ --exclude third_party/ --html --html-details -ocoverage_report/coverage.html
+      - name: Code coverage report html
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage_report
+          path: coverage_report
+      - name: clang-format style check
+        uses: DoozyX/clang-format-lint-action@v0.12
+        with:
+          source: './file_generator ./neutral_functions ./parallel ./single ./tests'
+          exclude: './_builds ./build_c ./build_p ./third_party'
+          extensions: 'h,cpp,c'
+          clangFormatVersion: 12
+          style: google
